@@ -6,7 +6,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
-public class HttpConection {
+public class HttpConnection {
 
   public String connection(String address){
     HttpClient client  = HttpClient.newHttpClient();

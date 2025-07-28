@@ -4,7 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import spring_boot.literalura.service.HttpConection;
+import spring_boot.literalura.service.HttpConnection;
 
 @SpringBootApplication
 public class LiteraluraApplication implements CommandLineRunner{
@@ -15,7 +15,7 @@ public class LiteraluraApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		HttpConection api = new HttpConection();
+		HttpConnection api = new HttpConnection();
 
 		System.out.println(api.connection("https://gutendex.com/books/"));
 	}
