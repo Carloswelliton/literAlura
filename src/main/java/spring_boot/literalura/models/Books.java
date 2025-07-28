@@ -12,18 +12,25 @@ public record Books(@JsonAlias("title") String titulo,
                     @JsonAlias("download_count") int quantidadeDownload
 ) {
 
-    public String firstAuthor(){
-      if(autor!=null && !autor.isEmpty()){
-        return autor.get(0).nome();
-      }
-      return "Autor desconhecido";
-    }
-
     public String firstLanguage(){
       if(idioma!=null && !idioma.isEmpty()){
         return idioma.get(0);
       }
       return "idioma desconhecido";
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append("Título: ").append(titulo).append("\n");
+      sb.append("Autor(es): \n");
+      for(Author author : autor){
+        sb.append(" - ").append(author.nome()).append("\n");
+      }
+      sb.append("Idioma: ").append(idioma).append("\n");
+      sb.append("Quantidade de downloads: ").append(quantidadeDownload).append("\n");
+      sb.append("-------------------------------------");
+      return sb.toString();
     }
 
     
