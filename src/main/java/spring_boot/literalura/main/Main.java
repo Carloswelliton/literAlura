@@ -1,13 +1,23 @@
 package spring_boot.literalura.main;
 
+import java.awt.print.Book;
 import java.util.Scanner;
 
 import org.springframework.stereotype.Component;
 
+import spring_boot.literalura.models.Books;
+import spring_boot.literalura.models.GutendexResponse;
+import spring_boot.literalura.service.DataConverter;
+import spring_boot.literalura.service.HttpConnection;
+
 @Component
 public class Main {
-  public void main(){
+
+  public void menu(){
     Scanner sc = new Scanner(System.in);
+    DataConverter converter = new DataConverter();
+    HttpConnection con = new HttpConnection();
+    var address = "https://gutendex.com/books/?search=";
     int option = 0;
 
     do {
@@ -25,9 +35,26 @@ public class Main {
 
       switch (option) {
         case 1:
+          sc.nextLine();
+          System.out.println("Digite o nome do livro que deseja buscar: ");
+          var livro = sc.nextLine().toLowerCase();
+          var json = con.connection(address+livro.replace(" ", "+"));
+          GutendexResponse resposta = converter.dataConverter(json, GutendexResponse.class);
+
+          if(resposta.result().isEmpty()){
+            System.out.println("Nenhum livro encontrado com esse nome");
+          }else{
+            Books livrosProcessados = resposta.result().get(0);
+            System.out.println("Titulo: "+livrosProcessados.titulo());
+            System.out.println("Autor: "+livrosProcessados.autor());
+            System.out.println("idioma: "+livrosProcessados.idioma());
+            System.out.println("Quantidade de downloads: "+livrosProcessados.quantidadeDownload());
+          }
           break;
+
         case 2:
           break;
+
         case 3:
           break;
         
@@ -47,4 +74,6 @@ public class Main {
       }
     } while (option != 0);
   }
+
+  
 }

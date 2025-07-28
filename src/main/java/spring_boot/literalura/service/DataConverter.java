@@ -11,7 +11,7 @@ public class DataConverter implements IDataConverter{
   private ObjectMapper mapper = new ObjectMapper();
 
   @Override
-  public <T> T connection(String json, Class<T> clazz) {
+  public <T> T dataConverter(String json, Class<T> clazz) {
     try {
       return mapper.readValue(json, clazz);
     } catch (JsonProcessingException e) {
@@ -20,7 +20,7 @@ public class DataConverter implements IDataConverter{
   }
 
   @Override
-  public <T> List<T> getlist(String json, Class<T> clazz) {
+  public <T> List<T> getList(String json, Class<T> clazz) {
     CollectionType list = mapper.getTypeFactory().constructCollectionType(List.class, clazz);
     try {
       return mapper.readValue(json, list);
