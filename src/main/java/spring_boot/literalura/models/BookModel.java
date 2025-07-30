@@ -13,8 +13,8 @@ public class BookModel {
   @Column(nullable = false)
   private String titulo;
 
-  @Column(nullable = false)
-  private String autor;
+  @ManyToOne(cascade = CascadeType.ALL)
+  private AuthorModel autor;
 
   @Column(nullable = false)
   private String idioma;
@@ -25,30 +25,47 @@ public class BookModel {
   public BookModel() {
   }
 
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   public String getTitulo() {
     return titulo;
   }
+
   public void setTitulo(String titulo) {
     this.titulo = titulo;
   }
-  public String getAutor() {
+
+  public AuthorModel getAutor() {
     return autor;
   }
-  public void setAutor(String autor) {
+
+  public void setAutor(AuthorModel autor) {
     this.autor = autor;
   }
+
   public String getIdioma() {
     return idioma;
   }
+
   public void setIdioma(String idioma) {
     this.idioma = idioma;
   }
+
   public Integer getQuantidadeDownload() {
     return quantidadeDownload;
   }
+
   public void setQuantidadeDownload(Integer quantidadeDownload) {
     this.quantidadeDownload = quantidadeDownload;
   }
+
+  
 
   
   
