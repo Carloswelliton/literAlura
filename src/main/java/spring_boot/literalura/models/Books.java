@@ -29,7 +29,7 @@ public record Books(@JsonAlias("title") String titulo,
       }
       sb.append("Idioma: ").append(idioma).append("\n");
       sb.append("Quantidade de downloads: ").append(quantidadeDownload).append("\n");
-      sb.append("-------------------------------------");
+      sb.append("-------------------------------------\n");
       return sb.toString();
     }
 

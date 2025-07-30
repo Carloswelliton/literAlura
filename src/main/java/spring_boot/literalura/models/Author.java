@@ -12,7 +12,7 @@ public record Author(
 
   @Override
   public String toString() {
-    return "Autor: " + nome;
+    return nome;
   }
 
   
